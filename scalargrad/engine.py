@@ -74,12 +74,18 @@ class Value:
         for n in reversed(sorted):
             n._backward()
 
-    # def exp(self):
-    #     pass
+    def exp(self):
+        out = Value(exp(self.data), (self,), "exp")
+
+        def _backward():
+            self.grad += out.data * out.grad
+
+        out._backward = _backward
+        return out
 
     def tanh(self):
         x = self.data
-        t = (exp(2**x) - 1) / (exp(2**x) + 1)
+        t = (exp(2 * x) - 1) / (exp(2 * x) + 1)
         out = Value(t, (self,), "tanh")
 
         def _backward():
@@ -88,8 +94,13 @@ class Value:
         out._backward = _backward
         return out
 
-    def softmax(self):
-        pass
+    # From the micrograd homework
+    @staticmethod
+    def softmax(logits):
+        counts = [logit.exp() for logit in logits]
+        denominator = sum(counts)
+        out = [c / denominator for c in counts]
+        return out
 
     def __neg__(self):
         return self * -1
