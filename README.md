@@ -1,6 +1,6 @@
 # Scalargrad
 
-A blind rewrite from micrograd, with extra activation functions. Perhaps useful for educational purposes only. Really, _really_ slow, at anything else rather than binary classification.
+A blind rewrite from micrograd, with extra activation functions. Perhaps useful for educational purposes only. Really, _really_ slow, at anything else other than binary classification.
 
 ## Extras
 
