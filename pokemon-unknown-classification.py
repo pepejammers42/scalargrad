@@ -72,8 +72,8 @@ N_small = 100
 train_images = train_images[:N_small]
 train_labels = train_labels[:N_small]
 N_data = train_images.shape[0]
-test_images = test_images[:N_small]
-test_labels = test_labels[:N_small]
+test_images = test_images[100 : 100 + N_small]
+test_labels = test_labels[100 : 100 + N_small]
 
 
 print(f"Training examples: {train_images.shape[0]}")
